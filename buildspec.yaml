@@ -1,0 +1,20 @@
+version: 0.2
+
+phases: # liks stages in gitactions
+  install:
+    runtime-versions:
+      python: 3.x # amazon linux will install python 3.x libraries
+
+  pre_build:
+    commands:
+    - chmod +x install-terraform.sh configure-named-profile.sh apply-terraform.sh
+  #terraform installation
+    - ./install-terraform.sh
+
+    #configure profile
+    #passing the values in env variables
+    - ./configure-named-profile.sh
+  build:
+    commands:
+      - ./apply-terraform.sh
+      
